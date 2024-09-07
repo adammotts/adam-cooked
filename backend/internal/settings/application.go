@@ -1,5 +1,5 @@
 package settings
 
 type Application struct {
-	Port int
+	Port int `env:"PORT" envDefault:"8080"`
 }
