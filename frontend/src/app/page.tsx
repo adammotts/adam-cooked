@@ -42,7 +42,7 @@ export default function Home() {
       <Navbar createRecipe={() => setIsModalOpen(true)} />
       <div className="flex flex-col p-16 items-start gap-6">
         <h1 className="text-[2vh]">All Recipes</h1>
-        <div className="w-full flex grid grid-cols-4 gap-[4vh]">
+        <div className="w-full flex grid grid-cols-4 gap-[4vh] justify-center">
           {placeholder.map((_, index) => (
             <div
               key={index}
