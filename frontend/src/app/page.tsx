@@ -6,6 +6,12 @@ import CreateRecipe from "@/forms/CreateRecipe";
 import { Meal, Recipe } from "@/types/recipe";
 import { Modal } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import placeholderImg from "../../public/placeholder.png";
+import Image from "next/image";
+import menuItem from "../components/Menu/menuItem"
+import MenuItem from "../components/Menu/menuItem";
+export default function Home() {
 import { useEffect, useState } from "react";
 
 type FilterOptions = Meal | "All";
@@ -37,6 +43,16 @@ export default function Home() {
       setVisibleData(data.filter((r) => r.meal === filter));
     }
   }, [filter, data]);
+  });
+
+  const recipe = {
+    name: "grilled cheese",
+    time: "10m",
+    Instructions:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis porta tristique. Aliquam a tellus at tellus blandit tristique in at ipsum. Curabitur varius velit at magna lobortis, vel efficitur sem imperdiet. Quisque ut metus id nibh ultrices hendrerit in at massa. Etiam eu sapien id mauris porttitor posuere. Nullam id tincidunt libero. Sed ex lectus, laoreet id mattis eget, bibendum sed leo. Etiam eu condimentum nunc. Donec id arcu non orci rutrum bibendum. Vestibulum a mattis lacus.",
+  };
+
+  const placeholder = [1, 2, 3, 4, 5, 6, 7];
 
   return (
     <>
@@ -52,7 +68,16 @@ export default function Home() {
       </Modal>
       <Navbar createRecipe={() => setIsModalOpen(true)} />
       <div className="flex flex-col p-16 items-start gap-6">
-        {/** TODO: THIS IS WHERE THE MAIN APP LIVES */}
+        <h1 className="text-[2vh]">All Recipes</h1>
+        <div className="w-full flex grid grid-cols-4 gap-[4vh]">
+          {placeholder.map((_, index) => (
+            <div
+              key={index}
+            >
+              <MenuItem item={recipe} />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
