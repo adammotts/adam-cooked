@@ -4,14 +4,11 @@ import { fetchAllRecipes } from "@/api/recipe";
 import Navbar from "@/components/Navbar/Navbar";
 import CreateRecipe from "@/forms/CreateRecipe";
 import { Meal, Recipe } from "@/types/recipe";
-import { Modal } from "@mui/material";
+import { MenuItem, Modal, Select, SelectChangeEvent } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import placeholderImg from "../../public/placeholder.png";
 import Image from "next/image";
-import menuItem from "../components/Menu/menuItem"
-import MenuItem from "../components/Menu/menuItem";
-export default function Home() {
+import RecipeItem from "../components/Menu/menuItem";
 import { useEffect, useState } from "react";
 
 type FilterOptions = Meal | "All";
@@ -43,7 +40,10 @@ export default function Home() {
       setVisibleData(data.filter((r) => r.meal === filter));
     }
   }, [filter, data]);
-  });
+
+  const handleFilter = (event: SelectChangeEvent) => {
+    setFilter(event.target.value as FilterOptions);
+  };
 
   const recipe = {
     name: "grilled cheese",
@@ -69,12 +69,23 @@ export default function Home() {
       <Navbar createRecipe={() => setIsModalOpen(true)} />
       <div className="flex flex-col p-16 items-start gap-6">
         <h1 className="text-[2vh]">All Recipes</h1>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={"All"}
+          label="Age"
+          onChange={handleFilter}
+        >
+          <MenuItem value={"All"}>All recipes</MenuItem>
+          <MenuItem value={"breakfast"}>Breakfast</MenuItem>
+          <MenuItem value={"lunch"}>Lunch</MenuItem>
+          <MenuItem value={"dinner"}>Dinner</MenuItem>
+          <MenuItem value={"snack"}>Snack</MenuItem>
+        </Select>
         <div className="w-full flex grid grid-cols-4 gap-[4vh]">
           {placeholder.map((_, index) => (
-            <div
-              key={index}
-            >
-              <MenuItem item={recipe} />
+            <div key={index}>
+              <RecipeItem item={recipe} />
             </div>
           ))}
         </div>

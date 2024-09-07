@@ -1,7 +1,7 @@
 import Image from "next/image";
 import placeholderImg from "../../../public/placeholder.png";
 
-const MenuItem = ({ item }) => {
+const RecipeItem = ({ item }) => {
   return (
     <div className="w-[15vw] h-[25vh] bg-primary rounded-[1vw]">
       <div className="relative w-[15vw] h-[20vh] bg-primary hover:cursor-pointer rounded-tl-[1vw] rounded-tr-[1vw]">
@@ -20,4 +20,4 @@ const MenuItem = ({ item }) => {
   );
 };
 
-export default MenuItem;
+export default RecipeItem;
