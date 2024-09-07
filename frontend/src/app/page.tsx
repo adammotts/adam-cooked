@@ -8,6 +8,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import placeholderImg from "../../public/placeholder.png";
 import Image from "next/image";
+import menuItem from "../components/Menu/menuItem"
+import MenuItem from "../components/Menu/menuItem";
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -40,18 +42,12 @@ export default function Home() {
       <Navbar createRecipe={() => setIsModalOpen(true)} />
       <div className="flex flex-col p-16 items-start gap-6">
         <h1 className="text-[2vh]">All Recipes</h1>
-        <div className="w-full flex grid grid-cols-4">
+        <div className="w-full flex grid grid-cols-4 gap-[4vh]">
           {placeholder.map((_, index) => (
             <div
               key={index}
-              className="relative w-[15vw] h-[20vh] bg- hover:cursor-pointer"
             >
-              <Image
-                src={placeholderImg}
-                alt="placeholder"
-                layout="fill"
-                objectFit=""
-              />
+              <MenuItem item={recipe} />
             </div>
           ))}
         </div>
