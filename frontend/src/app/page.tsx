@@ -6,7 +6,8 @@ import CreateRecipe from "@/forms/CreateRecipe";
 import { Modal } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-
+import placeholder from "../../public/placeholder.png";
+import Image from "next/image";
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -38,13 +39,13 @@ export default function Home() {
       <Navbar createRecipe={() => setIsModalOpen(true)} />
       <div className="flex flex-col p-16 items-start gap-6">
           <h1 className="text-[2vh]">All Recipes</h1>
-          <div className="w-full flex flex-row">
+          <div className="w-full flex grid grid-cols-4">
             {placeholder.map((_, index) => (
-              <div className="flex flex-col w-full h-full overflow-x-none">
-                <div className="w-[15vw] h-[20vh] hover:cursor-pointer">
-                  hello
+                <div className="relative w-[15vw] h-[20vh] bg- hover:cursor-pointer">
+                  
+                  <Image src="https://ibb.co/8rdfjfg" 
+                  alt="placeholder" layout="fill" objectFit="" />
                   </div>
-              </div>
             ))}
           </div>
         </div>
